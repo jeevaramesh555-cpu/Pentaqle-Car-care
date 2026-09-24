@@ -185,22 +185,26 @@ export const ReportsPage: React.FC = () => {
 
       {/* Date Filter Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 bg-white rounded-xl border border-neutral-200 shadow-2xs text-xs">
-        <div className="flex items-center gap-2">
-          <Calendar className="w-4 h-4 text-neutral-400" />
-          <span className="font-semibold text-neutral-700">Filter Range:</span>
-          <input
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-            className="px-2 py-1 bg-neutral-50 border border-neutral-200 rounded text-neutral-800"
-          />
-          <span className="text-neutral-400">to</span>
-          <input
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-            className="px-2 py-1 bg-neutral-50 border border-neutral-200 rounded text-neutral-800"
-          />
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="flex items-center gap-1.5">
+            <Calendar className="w-4 h-4 text-neutral-400" />
+            <span className="font-semibold text-neutral-700">Filter Range:</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <input
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+              className="px-2 py-1 bg-neutral-50 border border-neutral-200 rounded text-neutral-800 text-xs"
+            />
+            <span className="text-neutral-400 text-xs">to</span>
+            <input
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              className="px-2 py-1 bg-neutral-50 border border-neutral-200 rounded text-neutral-800 text-xs"
+            />
+          </div>
           {(startDate || endDate) && (
             <button
               onClick={() => {

@@ -109,7 +109,7 @@ export const RecommendationsPage: React.FC = () => {
           />
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <select
             value={priorityFilter}
             onChange={(e) => setPriorityFilter(e.target.value)}
@@ -220,8 +220,8 @@ export const RecommendationsPage: React.FC = () => {
                     </div>
 
                     {/* Due details & actions */}
-                    <div className="flex items-center gap-3 self-end sm:self-center shrink-0">
-                      <div className="text-right">
+                    <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-neutral-100 shrink-0">
+                      <div className="text-left sm:text-right">
                         {rec.recommendedNextKm ? (
                           <div className="font-mono tabular-nums text-xs font-bold text-neutral-900">
                             Due @ {formatOdometer(rec.recommendedNextKm)}

@@ -15,7 +15,7 @@ export const IdentifierSettings: React.FC<IdentifierSettingsProps> = ({
   return (
     <form
       onSubmit={onSave}
-      className="bg-white rounded-xl border border-neutral-200 shadow-2xs p-6 space-y-5"
+      className="bg-white rounded-xl border border-neutral-200 shadow-2xs p-4 sm:p-6 space-y-4 sm:space-y-5"
     >
       <div className="border-b border-neutral-100 pb-3">
         <h3 className="text-sm font-bold text-neutral-900">

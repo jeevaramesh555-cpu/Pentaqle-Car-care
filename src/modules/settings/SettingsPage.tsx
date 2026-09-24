@@ -70,10 +70,10 @@ export const SettingsPage: React.FC = () => {
       />
 
       {/* Tabs */}
-      <div className="flex border-b border-neutral-200">
+      <div className="flex border-b border-neutral-200 overflow-x-auto whitespace-nowrap">
         <button
           onClick={() => setActiveTab('profile')}
-          className={`px-4 py-2.5 text-xs font-semibold border-b-2 transition-colors flex items-center gap-1.5 ${
+          className={`px-4 py-2.5 text-xs font-semibold border-b-2 transition-colors flex items-center gap-1.5 shrink-0 ${
             activeTab === 'profile'
               ? 'border-neutral-900 text-neutral-900'
               : 'border-transparent text-neutral-500 hover:text-neutral-800'
@@ -85,7 +85,7 @@ export const SettingsPage: React.FC = () => {
 
         <button
           onClick={() => setActiveTab('modules')}
-          className={`px-4 py-2.5 text-xs font-semibold border-b-2 transition-colors flex items-center gap-1.5 ${
+          className={`px-4 py-2.5 text-xs font-semibold border-b-2 transition-colors flex items-center gap-1.5 shrink-0 ${
             activeTab === 'modules'
               ? 'border-neutral-900 text-neutral-900'
               : 'border-transparent text-neutral-500 hover:text-neutral-800'
@@ -97,7 +97,7 @@ export const SettingsPage: React.FC = () => {
 
         <button
           onClick={() => setActiveTab('prefixes')}
-          className={`px-4 py-2.5 text-xs font-semibold border-b-2 transition-colors flex items-center gap-1.5 ${
+          className={`px-4 py-2.5 text-xs font-semibold border-b-2 transition-colors flex items-center gap-1.5 shrink-0 ${
             activeTab === 'prefixes'
               ? 'border-neutral-900 text-neutral-900'
               : 'border-transparent text-neutral-500 hover:text-neutral-800'

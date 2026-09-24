@@ -22,7 +22,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({ onOpenMobileMenu, onOpenNe
   return (
     <>
       <header className="sticky top-0 z-30 bg-white border-b border-neutral-200">
-        <div className="flex items-center justify-between h-14 md:h-16 px-4 sm:px-6 gap-2">
+        <div className="relative flex items-center justify-between h-14 md:h-16 px-4 sm:px-6 gap-2">
           {/* Left: Mobile hamburger & Workshop Brand for mobile */}
           <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
             <button
@@ -40,7 +40,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({ onOpenMobileMenu, onOpenNe
                 const mainEl = document.querySelector('main');
                 if (mainEl) mainEl.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="flex items-center gap-2 md:hidden hover:opacity-85 transition-opacity min-w-0"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center gap-2 md:static md:top-auto md:left-auto md:translate-x-0 md:translate-y-0 md:hidden hover:opacity-85 transition-opacity max-w-[calc(100%-140px)] min-w-0"
               title="Go to Home"
             >
               <div className="w-8 h-8 rounded bg-neutral-900 flex items-center justify-center text-white shrink-0">
@@ -82,10 +82,10 @@ export const TopHeader: React.FC<TopHeaderProps> = ({ onOpenMobileMenu, onOpenNe
             )}
 
             {/* Interactive Role Switcher Dropdown (Allows testing permissions easily) */}
-            <div className="relative">
+            <div className="relative hidden md:block">
               <button
                 onClick={() => setIsRoleDropdownOpen(!isRoleDropdownOpen)}
-                className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1.5 text-xs font-medium text-neutral-700 hover:text-neutral-900 bg-neutral-100 hover:bg-neutral-200/80 border border-neutral-200 rounded-md transition-colors"
+                className="hidden md:flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1.5 text-xs font-medium text-neutral-700 hover:text-neutral-900 bg-neutral-100 hover:bg-neutral-200/80 border border-neutral-200 rounded-md transition-colors"
                 title="Current User & Role"
               >
                 <ShieldCheck className="w-3.5 h-3.5 text-neutral-500 shrink-0" />

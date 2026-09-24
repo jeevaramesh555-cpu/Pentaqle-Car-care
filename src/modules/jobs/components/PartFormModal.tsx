@@ -75,13 +75,13 @@ export const PartFormModal: React.FC<PartFormModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-      <div className="w-full max-w-lg bg-white rounded-xl shadow-2xl border border-neutral-200 p-6 space-y-4">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in">
+      <div className="w-full max-w-lg bg-white rounded-t-2xl sm:rounded-xl shadow-2xl border border-neutral-200 p-4 sm:p-6 space-y-4 max-h-[92vh] sm:max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between pb-3 border-b border-neutral-200">
           <h3 className="text-base font-bold text-neutral-900">
             {initialData ? 'Edit Part Usage / Replacement' : 'Record Part Usage / Replacement'}
           </h3>
-          <button onClick={onClose} className="p-1 text-neutral-400 hover:text-neutral-700">
+          <button onClick={onClose} className="p-1.5 text-neutral-400 hover:text-neutral-700 rounded-md">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -98,7 +98,7 @@ export const PartFormModal: React.FC<PartFormModalProps> = ({
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="block font-semibold text-neutral-700 mb-1">Brand *</label>
               <input
@@ -122,7 +122,7 @@ export const PartFormModal: React.FC<PartFormModalProps> = ({
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="block font-semibold text-neutral-700 mb-1">Quantity</label>
               <input
@@ -173,18 +173,18 @@ export const PartFormModal: React.FC<PartFormModalProps> = ({
             />
           </div>
 
-          <div className="flex justify-end gap-2 pt-3 border-t border-neutral-200">
+          <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5 sm:gap-2 pt-3 border-t border-neutral-200">
             <button
               type="button"
               onClick={onClose}
-              className="px-3.5 py-2 font-semibold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded-md transition-colors"
+              className="w-full sm:w-auto px-3.5 py-2 font-semibold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded-md transition-colors text-center"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-4 py-2 font-semibold text-white bg-neutral-900 hover:bg-neutral-800 rounded-md disabled:opacity-50 transition-colors"
+              className="w-full sm:w-auto px-4 py-2.5 sm:py-2 font-semibold text-white bg-neutral-900 hover:bg-neutral-800 rounded-md disabled:opacity-50 transition-colors text-center"
             >
               {isSubmitting ? 'Saving...' : initialData ? 'Update Part Record' : 'Save Part Usage'}
             </button>

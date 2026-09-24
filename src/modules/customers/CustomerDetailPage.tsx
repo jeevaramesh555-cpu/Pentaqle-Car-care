@@ -106,20 +106,20 @@ export const CustomerDetailPage: React.FC = () => {
       </button>
 
       {/* Customer Header Info */}
-      <div className="p-6 bg-white rounded-xl border border-neutral-200 shadow-2xs">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          <div className="flex items-start gap-4">
-            <div className="w-14 h-14 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-xl shrink-0 shadow-xs">
+      <div className="p-4 sm:p-6 bg-white rounded-xl border border-neutral-200 shadow-2xs">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6">
+          <div className="flex items-start gap-3.5 sm:gap-4">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-lg sm:text-xl shrink-0 shadow-xs">
               {customer.name.substring(0, 2).toUpperCase()}
             </div>
             <div>
-              <div className="flex flex-wrap items-center gap-2.5">
-                <h1 className="text-2xl font-bold tracking-tight text-neutral-900">{customer.name}</h1>
+              <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+                <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900">{customer.name}</h1>
                 <StatusBadge status={customer.status} />
                 <span className="text-xs font-mono text-neutral-400">ID: {customer.id}</span>
               </div>
 
-              <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 mt-2 text-xs text-neutral-600">
+              <div className="flex flex-wrap items-center gap-x-4 sm:gap-x-5 gap-y-1.5 mt-2 text-xs text-neutral-600">
                 <span className="flex items-center gap-1.5 font-mono">
                   <Phone className="w-3.5 h-3.5 text-neutral-400" />
                   <strong>{customer.mobile}</strong>
@@ -141,7 +141,7 @@ export const CustomerDetailPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-2.5 shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-neutral-100">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 shrink-0 pt-3 lg:pt-0 border-t lg:border-t-0 border-neutral-100">
             {can('manage_vehicles') && (
               <button
                 onClick={() => setIsAddVehicleModalOpen(true)}

@@ -94,7 +94,8 @@ export const UsersPage: React.FC = () => {
           </h3>
         </div>
 
-        <div className="overflow-x-auto">
+        {/* Desktop Table View */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left text-sm divide-y divide-neutral-200">
             <thead className="bg-neutral-50 text-neutral-500 text-xs uppercase tracking-wider font-semibold">
               <tr>
@@ -166,6 +167,55 @@ export const UsersPage: React.FC = () => {
             </tbody>
           </table>
         </div>
+
+        {/* Mobile Cards View (Uncongested) */}
+        <div className="md:hidden divide-y divide-neutral-100">
+          {users.map((u) => (
+            <div key={u.id} className="p-4 space-y-2.5 hover:bg-neutral-50/70 transition-colors text-xs">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                  <div className="w-9 h-9 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-xs shrink-0">
+                    {u.name.substring(0, 2).toUpperCase()}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="font-semibold text-neutral-900 text-sm truncate">{u.name}</div>
+                    <div className="text-[11px] font-mono text-neutral-400">{u.id}</div>
+                  </div>
+                </div>
+                <span
+                  className={`px-2 py-0.5 rounded text-[10px] font-semibold shrink-0 ${
+                    u.status === 'Active'
+                      ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                      : 'bg-neutral-100 text-neutral-500 border border-neutral-200'
+                  }`}
+                >
+                  {u.status}
+                </span>
+              </div>
+
+              <div className="space-y-1 text-neutral-600 pt-0.5">
+                <div className="font-mono text-neutral-800">{u.phone}</div>
+                <div className="text-neutral-400 truncate">{u.email}</div>
+              </div>
+
+              <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-neutral-100">
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200">
+                  <ShieldCheck className="w-3 h-3 text-neutral-600" />
+                  {u.role}
+                </span>
+
+                {can('manage_users') && u.id !== currentUser.id && (
+                  <button
+                    onClick={() => handleStatusToggle(u)}
+                    className="text-xs font-semibold text-neutral-600 hover:text-neutral-900 underline ml-auto"
+                  >
+                    {u.status === 'Active' ? 'Deactivate' : 'Activate'}
+                  </button>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Role Capabilities Reference Matrix */}
@@ -203,11 +253,11 @@ export const UsersPage: React.FC = () => {
 
       {/* Add Staff Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="w-full max-w-md bg-white rounded-xl shadow-2xl border border-neutral-200 p-6 space-y-4">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in">
+          <div className="w-full max-w-md bg-white rounded-t-2xl sm:rounded-xl shadow-2xl border border-neutral-200 p-4 sm:p-6 space-y-4 max-h-[92vh] sm:max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b border-neutral-200">
               <h3 className="text-base font-bold text-neutral-900">Add Staff Account</h3>
-              <button onClick={() => setIsModalOpen(false)} className="p-1 text-neutral-400 hover:text-neutral-700">
+              <button onClick={() => setIsModalOpen(false)} className="p-1.5 text-neutral-400 hover:text-neutral-700 rounded-md">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -260,17 +310,17 @@ export const UsersPage: React.FC = () => {
                 </select>
               </div>
 
-              <div className="flex justify-end gap-2 pt-3 border-t border-neutral-200">
+              <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5 sm:gap-2 pt-3 border-t border-neutral-200">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-3.5 py-2 font-semibold text-neutral-700 bg-neutral-100 rounded-md"
+                  className="w-full sm:w-auto px-3.5 py-2 font-semibold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded-md transition-colors text-center"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 font-semibold text-white bg-neutral-900 rounded-md"
+                  className="w-full sm:w-auto px-4 py-2.5 sm:py-2 font-semibold text-white bg-neutral-900 hover:bg-neutral-800 rounded-md transition-colors text-center"
                 >
                   Create Account
                 </button>

@@ -88,51 +88,84 @@ export const AuditLogPage: React.FC = () => {
             No audit log entries match your filter.
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs divide-y divide-neutral-200">
-              <thead className="bg-neutral-50 text-neutral-500 uppercase tracking-wider font-semibold">
-                <tr>
-                  <th className="px-5 py-3.5">Timestamp</th>
-                  <th className="px-5 py-3.5">Staff Actor</th>
-                  <th className="px-5 py-3.5">Action</th>
-                  <th className="px-5 py-3.5">Module</th>
-                  <th className="px-5 py-3.5 font-mono">Record ID</th>
-                  <th className="px-5 py-3.5">Event Description</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-neutral-100">
-                {filteredLogs.map((log) => (
-                  <tr key={log.id} className="hover:bg-neutral-50/70 transition-colors">
-                    <td className="px-5 py-3.5 whitespace-nowrap text-neutral-500 font-mono">
-                      {formatDateTime(log.timestamp)}
-                    </td>
-
-                    <td className="px-5 py-3.5 font-semibold text-neutral-900 whitespace-nowrap">
-                      {log.userName}
-                    </td>
-
-                    <td className="px-5 py-3.5 whitespace-nowrap">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200">
-                        {log.action}
-                      </span>
-                    </td>
-
-                    <td className="px-5 py-3.5 font-medium text-neutral-700 whitespace-nowrap">
-                      {log.module}
-                    </td>
-
-                    <td className="px-5 py-3.5 font-mono font-bold text-neutral-900 whitespace-nowrap">
-                      {log.recordId}
-                    </td>
-
-                    <td className="px-5 py-3.5 text-neutral-700 max-w-md">
-                      {log.description}
-                    </td>
+          <>
+            {/* Desktop Table View */}
+            <div className="hidden md:block overflow-x-auto">
+              <table className="w-full text-left text-xs divide-y divide-neutral-200">
+                <thead className="bg-neutral-50 text-neutral-500 uppercase tracking-wider font-semibold">
+                  <tr>
+                    <th className="px-5 py-3.5">Timestamp</th>
+                    <th className="px-5 py-3.5">Staff Actor</th>
+                    <th className="px-5 py-3.5">Action</th>
+                    <th className="px-5 py-3.5">Module</th>
+                    <th className="px-5 py-3.5 font-mono">Record ID</th>
+                    <th className="px-5 py-3.5">Event Description</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-neutral-100">
+                  {filteredLogs.map((log) => (
+                    <tr key={log.id} className="hover:bg-neutral-50/70 transition-colors">
+                      <td className="px-5 py-3.5 whitespace-nowrap text-neutral-500 font-mono">
+                        {formatDateTime(log.timestamp)}
+                      </td>
+
+                      <td className="px-5 py-3.5 font-semibold text-neutral-900 whitespace-nowrap">
+                        {log.userName}
+                      </td>
+
+                      <td className="px-5 py-3.5 whitespace-nowrap">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200">
+                          {log.action}
+                        </span>
+                      </td>
+
+                      <td className="px-5 py-3.5 font-medium text-neutral-700 whitespace-nowrap">
+                        {log.module}
+                      </td>
+
+                      <td className="px-5 py-3.5 font-mono font-bold text-neutral-900 whitespace-nowrap">
+                        {log.recordId}
+                      </td>
+
+                      <td className="px-5 py-3.5 text-neutral-700 max-w-md">
+                        {log.description}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile Card List View (Uncongested & Easy to Read) */}
+            <div className="md:hidden divide-y divide-neutral-100">
+              {filteredLogs.map((log) => (
+                <div key={log.id} className="p-4 space-y-2 hover:bg-neutral-50/70 transition-colors text-xs">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-semibold text-neutral-900">{log.userName}</span>
+                    <span className="font-mono text-[11px] text-neutral-400">
+                      {formatDateTime(log.timestamp)}
+                    </span>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200">
+                      {log.action}
+                    </span>
+                    <span className="px-1.5 py-0.5 rounded text-[10px] font-medium bg-neutral-50 text-neutral-600 border border-neutral-200">
+                      {log.module}
+                    </span>
+                    <span className="font-mono font-bold text-[11px] text-neutral-800 ml-auto">
+                      {log.recordId}
+                    </span>
+                  </div>
+
+                  <p className="text-neutral-600 leading-relaxed text-xs pt-0.5">
+                    {log.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </>
         )}
       </div>
     </div>

@@ -251,22 +251,40 @@ export const CustomerListPage: React.FC = () => {
                 <div
                   key={cust.id}
                   onClick={() => navigate(`/customers/${cust.id}`)}
-                  className="p-4 hover:bg-neutral-50 transition-colors cursor-pointer space-y-2"
+                  className="p-4 hover:bg-neutral-50 transition-colors cursor-pointer space-y-2.5"
                 >
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <div className="font-bold text-neutral-900 text-sm">{cust.name}</div>
-                      <div className="text-xs font-mono text-neutral-500">{cust.mobile}</div>
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="min-w-0 flex-1">
+                      <div className="font-bold text-neutral-900 text-sm truncate">{cust.name}</div>
+                      <div className="text-xs font-mono text-neutral-500 mt-0.5">{cust.mobile}</div>
                     </div>
                     <StatusBadge status={cust.status} size="sm" />
                   </div>
 
-                  <div className="text-xs text-neutral-500 flex items-center gap-2">
-                    <span>{cust.city}</span>
-                    <span aria-hidden="true">·</span>
-                    <span className="font-semibold text-neutral-700">{custVehicles.length} Vehicles</span>
-                    <span aria-hidden="true">·</span>
-                    <span>{custJobs.length} Visits</span>
+                  {custVehicles.length > 0 && (
+                    <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+                      {custVehicles.map((v) => (
+                        <span
+                          key={v.id}
+                          className="font-mono text-[10px] font-bold bg-neutral-100 text-neutral-800 px-1.5 py-0.5 rounded border border-neutral-200"
+                        >
+                          {v.registrationNumber}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="flex items-center justify-between text-xs text-neutral-500 pt-1.5 border-t border-neutral-100">
+                    <div className="flex items-center gap-2">
+                      <span>{cust.city}</span>
+                      <span aria-hidden="true">·</span>
+                      <span className="font-medium text-neutral-700">{custVehicles.length} Vehicles</span>
+                      <span aria-hidden="true">·</span>
+                      <span>{custJobs.length} Visits</span>
+                    </div>
+                    <span className="font-semibold text-neutral-900 flex items-center gap-0.5">
+                      View <ChevronRight className="w-3.5 h-3.5" />
+                    </span>
                   </div>
                 </div>
               );

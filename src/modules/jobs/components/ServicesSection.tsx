@@ -58,10 +58,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   const [openStatusDropdownId, setOpenStatusDropdownId] = useState<string | null>(null);
 
   return (
-    <div className="bg-white rounded-xl border border-neutral-200 shadow-2xs p-5 space-y-4">
+    <div className="bg-white rounded-xl border border-neutral-200 shadow-2xs p-3.5 sm:p-5 space-y-3.5 sm:space-y-4">
       <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
         <div className="flex items-center gap-2">
-          <Wrench className="w-4 h-4 text-emerald-600" />
+          <Wrench className="w-4 h-4 text-emerald-600 shrink-0" />
           <h2 className="text-sm font-bold text-neutral-900">
             3. Work / Services Performed ({services.length})
           </h2>
@@ -69,7 +69,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
         {canManage && (
           <button
             onClick={onAddClick}
-            className="px-2.5 py-1 text-xs font-semibold text-neutral-800 bg-neutral-100 hover:bg-neutral-200 rounded transition-colors flex items-center gap-1"
+            className="px-2.5 py-1 text-xs font-semibold text-neutral-800 bg-neutral-100 hover:bg-neutral-200 rounded transition-colors flex items-center gap-1 shrink-0"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Log Service</span>
@@ -88,7 +88,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             return (
               <div
                 key={s.id}
-                className="p-3 bg-neutral-50 rounded-lg border border-neutral-200 text-xs flex items-center justify-between gap-3 hover:border-neutral-300 transition-colors"
+                className="p-3 bg-neutral-50 rounded-lg border border-neutral-200 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 hover:border-neutral-300 transition-colors"
               >
                 <div className="min-w-0 flex-1">
                   <div className="font-semibold text-neutral-900 leading-snug">{s.serviceName}</div>
@@ -102,7 +102,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5 shrink-0">
+                <div className="flex items-center gap-2 shrink-0 self-start sm:self-auto pt-1 sm:pt-0 border-t sm:border-t-0 border-neutral-200/60 w-full sm:w-auto justify-between sm:justify-end">
                   {/* Status Dropdown / Badge */}
                   {canManage && onStatusChange ? (
                     <div className="relative">

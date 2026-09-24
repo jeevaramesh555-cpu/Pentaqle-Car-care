@@ -129,8 +129,8 @@ export const RemindersPage: React.FC = () => {
                   <div className="w-10 h-10 rounded-lg bg-neutral-100 text-neutral-800 flex items-center justify-center font-bold shrink-0">
                     <Car className="w-5 h-5" />
                   </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2">
+                  <div className="space-y-1 min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
                       <button
                         onClick={() => navigate(`/vehicles/${item.vehicle.id}`)}
                         className="font-mono font-bold text-sm text-neutral-900 hover:underline flex items-center gap-1"
@@ -152,12 +152,12 @@ export const RemindersPage: React.FC = () => {
                       </span>
                     </div>
 
-                    <div className="text-neutral-700 font-medium">
+                    <div className="text-neutral-700 font-medium leading-snug">
                       {item.reason}: <span className="text-neutral-500">{item.detail}</span>
                     </div>
 
-                    <div className="text-neutral-400 flex items-center gap-2 text-[11px]">
-                      <span>Owner: <strong>{item.owner?.name}</strong></span>
+                    <div className="text-neutral-400 flex flex-wrap items-center gap-2 text-[11px]">
+                      <span>Owner: <strong className="text-neutral-700">{item.owner?.name}</strong></span>
                       <span aria-hidden="true">·</span>
                       <span className="font-mono">{item.owner?.mobile}</span>
                       {item.dueKm && (
@@ -170,7 +170,7 @@ export const RemindersPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 self-end sm:self-center shrink-0">
+                <div className="flex flex-wrap items-center justify-between sm:justify-end gap-2 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-neutral-100 shrink-0">
                   {item.owner?.mobile && (
                     <button
                       onClick={() => {
@@ -181,7 +181,7 @@ export const RemindersPage: React.FC = () => {
                           item.vehicle.registrationNumber
                         );
                       }}
-                      className="px-3 py-1.5 text-xs font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-md transition-colors flex items-center gap-1.5"
+                      className="flex-1 sm:flex-none justify-center px-3 py-1.5 text-xs font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-md transition-colors flex items-center gap-1.5"
                     >
                       <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
                       <span>WhatsApp Reminder</span>
@@ -190,7 +190,7 @@ export const RemindersPage: React.FC = () => {
 
                   <button
                     onClick={() => navigate(`/vehicles/${item.vehicle.id}`)}
-                    className="px-3 py-1.5 text-xs font-semibold text-neutral-700 bg-white hover:bg-neutral-100 border border-neutral-200 rounded-md transition-colors"
+                    className="flex-1 sm:flex-none justify-center px-3 py-1.5 text-xs font-semibold text-neutral-700 bg-white hover:bg-neutral-100 border border-neutral-200 rounded-md transition-colors"
                   >
                     View History
                   </button>

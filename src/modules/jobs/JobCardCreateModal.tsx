@@ -148,13 +148,13 @@ export const JobCardCreateModal: React.FC<JobCardCreateModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-950/60 backdrop-blur-xs animate-in fade-in">
-      <div className="relative w-full max-w-2xl bg-white rounded-xl shadow-2xl border border-neutral-200 overflow-hidden flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-neutral-950/60 backdrop-blur-xs animate-in fade-in">
+      <div className="relative w-full max-w-2xl bg-white rounded-t-2xl sm:rounded-xl shadow-2xl border border-neutral-200 overflow-hidden flex flex-col max-h-[92vh] sm:max-h-[90vh]">
         {/* Modal Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-200 bg-neutral-50/70">
+        <div className="flex items-center justify-between px-4 py-3.5 sm:px-6 sm:py-4 border-b border-neutral-200 bg-neutral-50/70">
           <div>
-            <h2 className="text-lg font-bold text-neutral-900">Open New Job Card</h2>
-            <p className="text-xs text-neutral-500">Record vehicle intake and customer intake complaints</p>
+            <h2 className="text-base sm:text-lg font-bold text-neutral-900">Open New Job Card</h2>
+            <p className="text-[11px] sm:text-xs text-neutral-500">Record vehicle intake and customer intake complaints</p>
           </div>
           <button
             onClick={onClose}
@@ -165,7 +165,7 @@ export const JobCardCreateModal: React.FC<JobCardCreateModalProps> = ({
         </div>
 
         {/* Modal Body Form */}
-        <form onSubmit={handleSubmit} className="overflow-y-auto p-6 space-y-5 flex-1">
+        <form onSubmit={handleSubmit} className="overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-5 flex-1">
           {/* Vehicle Selection */}
           <div>
             <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-600 mb-1.5">
@@ -175,7 +175,7 @@ export const JobCardCreateModal: React.FC<JobCardCreateModalProps> = ({
               <select
                 value={selectedVehicleId}
                 onChange={(e) => handleVehicleChange(e.target.value)}
-                className="w-full px-3.5 py-2.5 text-sm bg-white border border-neutral-300 rounded-lg text-neutral-900 focus:ring-2 focus:ring-neutral-900 focus:outline-none"
+                className="w-full px-3 py-2 sm:px-3.5 sm:py-2.5 text-xs sm:text-sm bg-white border border-neutral-300 rounded-lg text-neutral-900 focus:ring-2 focus:ring-neutral-900 focus:outline-none"
                 required
               >
                 {vehicles.map((v) => {
@@ -192,32 +192,32 @@ export const JobCardCreateModal: React.FC<JobCardCreateModalProps> = ({
 
           {/* Vehicle & Customer Preview Card */}
           {currentVehicle && currentCustomer && (
-            <div className="p-3.5 bg-neutral-50 rounded-lg border border-neutral-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded bg-neutral-900 text-white flex items-center justify-center font-bold">
+            <div className="p-3 bg-neutral-50 rounded-lg border border-neutral-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 text-xs">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded bg-neutral-900 text-white flex items-center justify-center font-bold shrink-0">
                   <Car className="w-4 h-4" />
                 </div>
-                <div>
-                  <div className="font-bold text-neutral-900 text-sm">
+                <div className="min-w-0">
+                  <div className="font-bold text-neutral-900 text-sm truncate">
                     {currentVehicle.registrationNumber}
                   </div>
-                  <div className="text-neutral-500">
+                  <div className="text-neutral-500 truncate">
                     {currentVehicle.make} {currentVehicle.model} {currentVehicle.variant} ({currentVehicle.year})
                   </div>
                 </div>
               </div>
 
               <div className="flex items-center gap-2 border-t sm:border-t-0 sm:border-l border-neutral-200 pt-2 sm:pt-0 sm:pl-4 text-neutral-600">
-                <User className="w-4 h-4 text-neutral-400" />
-                <div>
-                  <div className="font-semibold text-neutral-800">{currentCustomer.name}</div>
+                <User className="w-4 h-4 text-neutral-400 shrink-0" />
+                <div className="min-w-0">
+                  <div className="font-semibold text-neutral-800 truncate">{currentCustomer.name}</div>
                   <div className="text-neutral-500 font-mono">{currentCustomer.mobile}</div>
                 </div>
               </div>
             </div>
           )}
 
-          {/* Pending Recommendations Alert Banner (Vital Feature from brief) */}
+          {/* Pending Recommendations Alert Banner */}
           {pendingRecs.length > 0 && (
             <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg flex items-start gap-2.5 text-xs text-amber-900">
               <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
@@ -233,13 +233,13 @@ export const JobCardCreateModal: React.FC<JobCardCreateModalProps> = ({
           )}
 
           {/* Odometer, Fuel Level & Expected Delivery */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
             <div>
               <label className="block text-xs font-semibold text-neutral-700 mb-1">
                 Current Odometer (km) *
               </label>
               <div className="relative">
-                <Gauge className="w-4 h-4 text-neutral-400 absolute left-3 top-3" />
+                <Gauge className="w-4 h-4 text-neutral-400 absolute left-3 top-2.5" />
                 <input
                   type="number"
                   value={odometer}
@@ -259,7 +259,7 @@ export const JobCardCreateModal: React.FC<JobCardCreateModalProps> = ({
             <div>
               <label className="block text-xs font-semibold text-neutral-700 mb-1">Fuel Level *</label>
               <div className="relative">
-                <Fuel className="w-4 h-4 text-neutral-400 absolute left-3 top-3" />
+                <Fuel className="w-4 h-4 text-neutral-400 absolute left-3 top-2.5" />
                 <select
                   value={fuelLevel}
                   onChange={(e) => setFuelLevel(e.target.value as FuelLevel)}
@@ -279,7 +279,7 @@ export const JobCardCreateModal: React.FC<JobCardCreateModalProps> = ({
                 Expected Completion
               </label>
               <div className="relative">
-                <Calendar className="w-4 h-4 text-neutral-400 absolute left-3 top-3" />
+                <Calendar className="w-4 h-4 text-neutral-400 absolute left-3 top-2.5" />
                 <input
                   type="date"
                   value={expectedDate}
@@ -291,7 +291,7 @@ export const JobCardCreateModal: React.FC<JobCardCreateModalProps> = ({
           </div>
 
           {/* Assigned Staff */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label className="block text-xs font-semibold text-neutral-700 mb-1">Service Advisor</label>
               <input
@@ -325,7 +325,7 @@ export const JobCardCreateModal: React.FC<JobCardCreateModalProps> = ({
                 placeholder="e.g. Periodic service, brake squeaking, AC cooling weak..."
                 className="w-full px-3 py-2 text-sm bg-white border border-neutral-300 rounded-lg text-neutral-900 focus:ring-2 focus:ring-neutral-900 focus:outline-none"
               />
-              <div className="flex items-center gap-2 text-xs">
+              <div className="flex flex-wrap items-center gap-2 text-xs">
                 <span className="text-neutral-500">Category:</span>
                 <select
                   value={complaintCategory}
@@ -359,18 +359,18 @@ export const JobCardCreateModal: React.FC<JobCardCreateModalProps> = ({
           </div>
 
           {/* Footer buttons */}
-          <div className="flex items-center justify-end gap-3 pt-3 border-t border-neutral-200">
+          <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5 sm:gap-3 pt-3 border-t border-neutral-200">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-xs font-semibold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded-md transition-colors"
+              className="w-full sm:w-auto px-4 py-2 text-xs font-semibold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded-md transition-colors text-center"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-5 py-2 text-xs font-semibold text-white bg-neutral-900 hover:bg-neutral-800 disabled:opacity-50 rounded-md transition-colors shadow-xs"
+              className="w-full sm:w-auto px-5 py-2.5 sm:py-2 text-xs font-semibold text-white bg-neutral-900 hover:bg-neutral-800 disabled:opacity-50 rounded-md transition-colors shadow-xs text-center"
             >
               {isSubmitting ? 'Creating...' : 'Open Job Card'}
             </button>

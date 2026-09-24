@@ -129,7 +129,7 @@ export const VehicleOverview: React.FC<VehicleOverviewProps> = ({
 
       {/* Pending Recommendations Alert strip */}
       {pendingRecs.length > 0 && (
-        <div className="mt-5 p-3.5 bg-amber-50 border border-amber-200/80 rounded-lg flex items-start justify-between gap-3 text-xs">
+        <div className="mt-5 p-3.5 bg-amber-50 border border-amber-200/80 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs">
           <div className="flex items-start gap-2.5 text-amber-900">
             <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
             <div>
@@ -142,7 +142,7 @@ export const VehicleOverview: React.FC<VehicleOverviewProps> = ({
           </div>
           <button
             onClick={onViewRecommendations}
-            className="px-2.5 py-1 text-xs font-semibold text-amber-900 bg-amber-200/70 hover:bg-amber-200 rounded shrink-0 transition-colors"
+            className="self-start sm:self-auto px-2.5 py-1 text-xs font-semibold text-amber-900 bg-amber-200/70 hover:bg-amber-200 rounded shrink-0 transition-colors"
           >
             Review Advice
           </button>

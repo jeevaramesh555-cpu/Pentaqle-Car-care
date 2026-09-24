@@ -301,11 +301,11 @@ export const VehicleListPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between text-[11px] text-neutral-400 pt-1">
+                  <div className="flex flex-wrap items-center justify-between text-[11px] text-neutral-400 pt-1.5 gap-2 border-t border-neutral-100">
                     <span>
                       {veh.fuelType} · {veh.transmission} · {vehicleJobs.length} Visits
                     </span>
-                    <span className="text-neutral-900 font-semibold flex items-center gap-1">
+                    <span className="text-neutral-900 font-semibold flex items-center gap-1 ml-auto">
                       Lifetime History <ChevronRight className="w-3.5 h-3.5" />
                     </span>
                   </div>

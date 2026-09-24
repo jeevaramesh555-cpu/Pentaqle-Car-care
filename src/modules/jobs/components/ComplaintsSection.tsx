@@ -17,10 +17,10 @@ export const ComplaintsSection: React.FC<ComplaintsSectionProps> = ({
   onEditClick,
 }) => {
   return (
-    <div className="bg-white rounded-xl border border-neutral-200 shadow-2xs p-5 space-y-4">
+    <div className="bg-white rounded-xl border border-neutral-200 shadow-2xs p-3.5 sm:p-5 space-y-3.5 sm:space-y-4">
       <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
         <div className="flex items-center gap-2">
-          <AlertCircle className="w-4 h-4 text-amber-500" />
+          <AlertCircle className="w-4 h-4 text-amber-500 shrink-0" />
           <h2 className="text-sm font-bold text-neutral-900">
             1. Customer Complaints ({complaints.length})
           </h2>
@@ -28,7 +28,7 @@ export const ComplaintsSection: React.FC<ComplaintsSectionProps> = ({
         {canManage && (
           <button
             onClick={onAddClick}
-            className="px-2.5 py-1 text-xs font-semibold text-neutral-800 bg-neutral-100 hover:bg-neutral-200 rounded transition-colors flex items-center gap-1"
+            className="px-2.5 py-1 text-xs font-semibold text-neutral-800 bg-neutral-100 hover:bg-neutral-200 rounded transition-colors flex items-center gap-1 shrink-0"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Add Complaint</span>
@@ -41,10 +41,10 @@ export const ComplaintsSection: React.FC<ComplaintsSectionProps> = ({
       ) : (
         <div className="space-y-2.5">
           {complaints.map((c) => (
-            <div key={c.id} className="p-3 bg-neutral-50 rounded-lg border border-neutral-200 text-xs space-y-1.5 hover:border-neutral-300 transition-colors">
-              <div className="flex items-start justify-between gap-2">
+            <div key={c.id} className="p-3 bg-neutral-50 rounded-lg border border-neutral-200 text-xs space-y-2 hover:border-neutral-300 transition-colors">
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
                 <div className="font-semibold text-neutral-900 text-sm leading-snug">{c.complaint}</div>
-                <div className="flex items-center gap-1.5 shrink-0">
+                <div className="flex items-center gap-1.5 shrink-0 self-start sm:self-auto">
                   <StatusBadge status={c.status} size="sm" />
                   {canManage && onEditClick && (
                     <button

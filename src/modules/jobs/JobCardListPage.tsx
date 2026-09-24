@@ -299,39 +299,42 @@ export const JobCardListPage: React.FC = () => {
                 <div
                   key={job.id}
                   onClick={() => navigate(`/jobs/${job.id}`)}
-                  className="p-4 hover:bg-neutral-50 transition-colors cursor-pointer space-y-2"
+                  className="p-4 hover:bg-neutral-50 transition-colors cursor-pointer space-y-2.5"
                 >
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <div className="font-mono font-bold text-sm text-neutral-900">
+                  <div className="flex items-start justify-between gap-2.5">
+                    <div className="min-w-0 flex-1">
+                      <div className="font-mono font-bold text-sm text-neutral-900 truncate">
                         {job.id} · {veh?.registrationNumber}
                       </div>
-                      <div className="text-xs text-neutral-500">
+                      <div className="text-xs text-neutral-500 mt-0.5 truncate">
                         {cust?.name} · {veh ? `${veh.make} ${veh.model}` : ''}
                       </div>
                     </div>
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-1.5 shrink-0">
                       <button
                         type="button"
                         onClick={(e) => handleQuickDownloadPdf(e, job.id)}
                         disabled={downloadingJobId === job.id}
                         title="Download PDF"
-                        className="p-1 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 rounded"
+                        className="p-1.5 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 rounded-md"
                       >
                         {downloadingJobId === job.id ? (
                           <Loader2 className="w-3.5 h-3.5 animate-spin" />
                         ) : (
-                          <FileDown className="w-3.5 h-3.5" />
+                          <FileDown className="w-4 h-4" />
                         )}
                       </button>
                       <StatusBadge status={job.status} size="sm" />
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between text-xs text-neutral-500 pt-1 border-t border-neutral-100">
-                    <span className="font-mono">{formatOdometer(job.odometer)}</span>
-                    <span>{formatDate(job.date)}</span>
-                    <span className="font-semibold text-neutral-900 flex items-center gap-0.5">
+                  <div className="flex flex-wrap items-center justify-between text-xs text-neutral-500 pt-2 border-t border-neutral-100 gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono font-medium">{formatOdometer(job.odometer)}</span>
+                      <span aria-hidden="true">·</span>
+                      <span>{formatDate(job.date)}</span>
+                    </div>
+                    <span className="font-semibold text-neutral-900 flex items-center gap-0.5 ml-auto">
                       Open <ChevronRight className="w-3.5 h-3.5" />
                     </span>
                   </div>
