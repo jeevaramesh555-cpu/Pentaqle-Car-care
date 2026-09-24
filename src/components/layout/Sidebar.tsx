@@ -10,7 +10,6 @@ import {
   UserCog,
   History,
   Settings,
-  Wrench,
   Receipt,
   Boxes,
   BellRing,
@@ -116,15 +115,15 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
           const mainEl = document.querySelector('main');
           if (mainEl) mainEl.scrollTo({ top: 0, behavior: 'smooth' });
         }}
-        className="h-16 flex items-center gap-3 px-5 border-b border-neutral-200 hover:bg-neutral-50/80 transition-colors"
+        className="h-16 flex items-center px-5 border-b border-neutral-200 hover:bg-neutral-50/80 transition-colors"
         title="Go to Home"
       >
-        <div className="w-9 h-9 rounded-lg bg-neutral-900 text-white flex items-center justify-center shrink-0 shadow-xs">
-          <Wrench className="w-5 h-5 text-amber-400" />
-        </div>
         <div className="flex flex-col truncate">
-          <span className="font-bold text-sm tracking-tight text-neutral-900 truncate">
+          <span className="font-brand font-black text-lg tracking-tight text-neutral-900 truncate">
             {settings.workshopName.split('–')[0].trim()}
+          </span>
+          <span className="text-[10px] uppercase font-semibold tracking-wider text-neutral-400 -mt-0.5">
+            Workshop Management
           </span>
         </div>
       </Link>

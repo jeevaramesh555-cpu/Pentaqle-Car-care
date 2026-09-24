@@ -582,7 +582,7 @@ export const generateJobCardPdf = (
 
     // Left
     doc.text(
-      `${settings.workshopName || 'Auto Clinic'} · Job Card Ref: ${job.id} · Vehicle: ${vehicle?.registrationNumber || 'N/A'}`,
+      `${settings.workshopName || 'Pentaqle Garage'} · Job Card Ref: ${job.id} · Vehicle: ${vehicle?.registrationNumber || 'N/A'}`,
       margin,
       pageHeight - 6.5
     );

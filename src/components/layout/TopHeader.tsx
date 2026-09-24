@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Plus, ShieldCheck, UserCheck, ChevronDown, Wrench, Menu } from 'lucide-react';
+import { Search, Plus, ShieldCheck, UserCheck, ChevronDown, Menu } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useSettings } from '../../context/SettingsContext';
 import { UserRole } from '../../types/user';
@@ -40,13 +40,10 @@ export const TopHeader: React.FC<TopHeaderProps> = ({ onOpenMobileMenu, onOpenNe
                 const mainEl = document.querySelector('main');
                 if (mainEl) mainEl.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center gap-2 md:static md:top-auto md:left-auto md:translate-x-0 md:translate-y-0 md:hidden hover:opacity-85 transition-opacity max-w-[calc(100%-140px)] min-w-0"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center md:static md:top-auto md:left-auto md:translate-x-0 md:translate-y-0 md:hidden hover:opacity-85 transition-opacity max-w-[calc(100%-140px)] min-w-0"
               title="Go to Home"
             >
-              <div className="w-8 h-8 rounded bg-neutral-900 flex items-center justify-center text-white shrink-0">
-                <Wrench className="w-4 h-4 text-amber-400" />
-              </div>
-              <span className="font-bold text-sm tracking-tight text-neutral-900 truncate max-w-[130px] sm:max-w-[200px]">
+              <span className="font-brand font-black text-base sm:text-lg tracking-tight text-neutral-900 truncate max-w-[180px] sm:max-w-[240px]">
                 {settings.workshopName.split('–')[0].trim()}
               </span>
             </Link>

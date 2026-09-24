@@ -1,7 +1,7 @@
 import { WorkshopSettings } from '../types/settings';
 
 export const initialSettings: WorkshopSettings = {
-  workshopName: 'Auto Clinic – Precision Automobile Workshop',
+  workshopName: 'Pentaqle Garage',
   tagline: 'Lifetime Vehicle Health & Digital Service History',
   address: '#48, Outer Ring Road, 7th Sector, HSR Layout',
   city: 'Bengaluru',
@@ -9,9 +9,9 @@ export const initialSettings: WorkshopSettings = {
   pin: '560102',
   phone: '+91 98450 88220',
   whatsApp: '+91 98450 88220',
-  email: 'service@autoclinic.in',
+  email: 'service@pentaqlegarage.com',
   gstin: '29ABCDE1234F1Z5',
-  website: 'https://autoclinic.in',
+  website: 'https://pentaqlegarage.com',
   currency: '₹',
   timezone: 'Asia/Kolkata',
   dateFormat: 'DD/MM/YYYY',

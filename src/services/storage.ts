@@ -118,7 +118,20 @@ export const storage = {
   getUsers: (): User[] => getItem(STORAGE_KEYS.USERS, initialUsers),
   saveUsers: (data: User[]) => setItem(STORAGE_KEYS.USERS, data),
 
-  getSettings: (): WorkshopSettings => getItem(STORAGE_KEYS.SETTINGS, initialSettings),
+  getSettings: (): WorkshopSettings => {
+    const saved = getItem(STORAGE_KEYS.SETTINGS, initialSettings);
+    if (saved && (saved.workshopName?.includes('Auto Clinic') || saved.email?.includes('autoclinic'))) {
+      const updated: WorkshopSettings = {
+        ...saved,
+        workshopName: saved.workshopName?.includes('Auto Clinic') ? 'Pentaqle Garage' : saved.workshopName,
+        email: saved.email?.includes('autoclinic') ? 'service@pentaqlegarage.com' : saved.email,
+        website: saved.website?.includes('autoclinic') ? 'https://pentaqlegarage.com' : saved.website,
+      };
+      setItem(STORAGE_KEYS.SETTINGS, updated);
+      return updated;
+    }
+    return saved;
+  },
   saveSettings: (data: WorkshopSettings) => setItem(STORAGE_KEYS.SETTINGS, data),
 
   getAuditLogs: (): AuditLogEntry[] => getItem(STORAGE_KEYS.AUDIT, initialAuditLogs),

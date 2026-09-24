@@ -326,7 +326,7 @@ export const PrintableJobSheet: React.FC<PrintableJobSheetProps> = ({ details, s
         <div>
           <div className="border-b border-neutral-400 pb-10 mb-1" />
           <p className="font-bold text-[10px] text-neutral-900">Service Advisor / Authorized Signatory</p>
-          <p className="text-[9px] text-neutral-500">{settings.workshopName || 'Auto Clinic'} Official Stamp & Sign</p>
+          <p className="text-[9px] text-neutral-500">{settings.workshopName || 'Pentaqle Garage'} Official Stamp & Sign</p>
         </div>
       </div>
     </div>
