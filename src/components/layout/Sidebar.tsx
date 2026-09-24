@@ -126,9 +126,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
           <span className="font-bold text-sm tracking-tight text-neutral-900 truncate">
             {settings.workshopName.split('–')[0].trim()}
           </span>
-          <span className="text-[10px] text-neutral-400 font-medium tracking-wide uppercase truncate">
-            Workshop Management
-          </span>
         </div>
       </Link>
 
@@ -169,9 +166,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
 
       {/* Workshop Location & Info footer */}
       <div className="p-3.5 border-t border-neutral-200 bg-neutral-50/70 text-xs text-neutral-500">
-        <div className="flex items-center justify-between mb-1">
-          <span className="font-semibold text-neutral-700 truncate">{settings.city}, {settings.state}</span>
-          <span className="text-[10px] font-mono text-neutral-400">v1.0</span>
+        <div className="font-semibold text-neutral-700 truncate mb-0.5">
+          {settings.city}, {settings.state}
         </div>
         <p className="text-[11px] text-neutral-400 truncate">{settings.phone}</p>
       </div>
