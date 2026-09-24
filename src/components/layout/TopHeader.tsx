@@ -21,76 +21,77 @@ export const TopHeader: React.FC<TopHeaderProps> = ({ onOpenMobileMenu, onOpenNe
 
   return (
     <>
-      <header className="sticky top-0 z-30 flex items-center justify-between h-16 px-4 sm:px-6 bg-white border-b border-neutral-200">
-        {/* Left: Mobile hamburger & Workshop Brand for mobile */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={onOpenMobileMenu}
-            className="p-2 -ml-2 text-neutral-600 hover:text-neutral-900 md:hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-200"
-            aria-label="Open navigation menu"
-          >
-            <Menu className="w-5 h-5" />
-          </button>
-
-          <Link
-            to="/"
-            onClick={() => {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-              const mainEl = document.querySelector('main');
-              if (mainEl) mainEl.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            className="flex items-center gap-2 md:hidden hover:opacity-85 transition-opacity"
-            title="Go to Home"
-          >
-            <div className="w-8 h-8 rounded bg-neutral-900 flex items-center justify-center text-white shrink-0">
-              <Wrench className="w-4 h-4 text-amber-400" />
-            </div>
-            <span className="font-bold text-sm tracking-tight text-neutral-900 truncate max-w-[140px]">
-              {settings.workshopName.split('–')[0].trim()}
-            </span>
-          </Link>
-        </div>
-
-        {/* Middle: Prominent Global Search Bar (Critical for quick vehicle reg lookup) */}
-        <div className="flex-1 max-w-xl mx-3 sm:mx-6">
-          <button
-            onClick={() => setIsSearchOpen(true)}
-            className="w-full flex items-center justify-between px-3.5 py-2 text-sm bg-neutral-100 hover:bg-neutral-200/70 border border-neutral-200/90 rounded-lg text-neutral-500 transition-all text-left shadow-2xs group"
-          >
-            <div className="flex items-center gap-2.5 truncate">
-              <Search className="w-4 h-4 text-neutral-400 group-hover:text-neutral-700 transition-colors shrink-0" />
-              <span className="truncate">Search reg no. (KA-01...), customer, job card...</span>
-            </div>
-            <kbd className="hidden sm:inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-mono font-medium text-neutral-500 bg-white rounded border border-neutral-200 shadow-2xs">
-              ⌘K
-            </kbd>
-          </button>
-        </div>
-
-        {/* Right: Actions & User Role Switcher */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          {can('manage_jobs') && (
+      <header className="sticky top-0 z-30 bg-white border-b border-neutral-200">
+        <div className="flex items-center justify-between h-14 md:h-16 px-4 sm:px-6 gap-2">
+          {/* Left: Mobile hamburger & Workshop Brand for mobile */}
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
             <button
-              onClick={onOpenNewJobModal}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-neutral-900 hover:bg-neutral-800 rounded-md transition-colors shadow-xs shrink-0"
+              onClick={onOpenMobileMenu}
+              className="p-2 -ml-2 text-neutral-600 hover:text-neutral-900 md:hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-200 shrink-0"
+              aria-label="Open navigation menu"
             >
-              <Plus className="w-4 h-4" />
-              <span className="hidden sm:inline">New Job Card</span>
-              <span className="sm:hidden">Job</span>
+              <Menu className="w-5 h-5" />
             </button>
-          )}
 
-          {/* Interactive Role Switcher Dropdown (Allows testing permissions easily) */}
-          <div className="relative">
-            <button
-              onClick={() => setIsRoleDropdownOpen(!isRoleDropdownOpen)}
-              className="flex items-center gap-2 px-2.5 py-1.5 text-xs font-medium text-neutral-700 hover:text-neutral-900 bg-neutral-100 hover:bg-neutral-200/80 border border-neutral-200 rounded-md transition-colors"
-              title="Current User & Role"
+            <Link
+              to="/"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                const mainEl = document.querySelector('main');
+                if (mainEl) mainEl.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="flex items-center gap-2 md:hidden hover:opacity-85 transition-opacity min-w-0"
+              title="Go to Home"
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-neutral-500" />
-              <span className="font-medium text-neutral-800">{currentUser.name}</span>
-              <ChevronDown className="w-3.5 h-3.5 text-neutral-400" />
+              <div className="w-8 h-8 rounded bg-neutral-900 flex items-center justify-center text-white shrink-0">
+                <Wrench className="w-4 h-4 text-amber-400" />
+              </div>
+              <span className="font-bold text-sm tracking-tight text-neutral-900 truncate max-w-[130px] sm:max-w-[200px]">
+                {settings.workshopName.split('–')[0].trim()}
+              </span>
+            </Link>
+          </div>
+
+          {/* Desktop Middle: Prominent Global Search Bar (Hidden on mobile, placed below company name on mobile) */}
+          <div className="hidden md:block flex-1 max-w-xl mx-4 lg:mx-6">
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              className="w-full flex items-center justify-between px-3.5 py-2 text-sm bg-neutral-100 hover:bg-neutral-200/70 border border-neutral-200/90 rounded-lg text-neutral-500 transition-all text-left shadow-2xs group"
+            >
+              <div className="flex items-center gap-2.5 truncate">
+                <Search className="w-4 h-4 text-neutral-400 group-hover:text-neutral-700 transition-colors shrink-0" />
+                <span className="truncate">Search reg no. (KA-01...), customer, job card...</span>
+              </div>
+              <kbd className="hidden sm:inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-mono font-medium text-neutral-500 bg-white rounded border border-neutral-200 shadow-2xs">
+                ⌘K
+              </kbd>
             </button>
+          </div>
+
+          {/* Right: Actions & User Role Switcher */}
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            {can('manage_jobs') && (
+              <button
+                onClick={onOpenNewJobModal}
+                className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-semibold text-white bg-neutral-900 hover:bg-neutral-800 rounded-md transition-colors shadow-xs shrink-0"
+              >
+                <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span className="hidden sm:inline">New Job Card</span>
+                <span className="sm:hidden">Job</span>
+              </button>
+            )}
+
+            {/* Interactive Role Switcher Dropdown (Allows testing permissions easily) */}
+            <div className="relative">
+              <button
+                onClick={() => setIsRoleDropdownOpen(!isRoleDropdownOpen)}
+                className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1.5 text-xs font-medium text-neutral-700 hover:text-neutral-900 bg-neutral-100 hover:bg-neutral-200/80 border border-neutral-200 rounded-md transition-colors"
+                title="Current User & Role"
+              >
+                <ShieldCheck className="w-3.5 h-3.5 text-neutral-500 shrink-0" />
+                <span className="font-medium text-neutral-800 max-w-[75px] sm:max-w-none truncate">{currentUser.name}</span>
+                <ChevronDown className="w-3.5 h-3.5 text-neutral-400 shrink-0" />
+              </button>
 
             {isRoleDropdownOpen && (
               <>
@@ -131,6 +132,23 @@ export const TopHeader: React.FC<TopHeaderProps> = ({ onOpenMobileMenu, onOpenNe
               </>
             )}
           </div>
+        </div>
+      </div>
+
+      {/* Mobile Search Bar: Positioned below company name & fits mobile frame cleanly */}
+        <div className="block md:hidden px-4 pb-2.5 pt-0.5">
+          <button
+            onClick={() => setIsSearchOpen(true)}
+            className="w-full flex items-center justify-between px-3 py-2 text-xs bg-neutral-100 hover:bg-neutral-200/70 border border-neutral-200/90 rounded-lg text-neutral-500 transition-all text-left shadow-2xs group"
+          >
+            <div className="flex items-center gap-2 truncate">
+              <Search className="w-3.5 h-3.5 text-neutral-400 group-hover:text-neutral-700 transition-colors shrink-0" />
+              <span className="truncate">Search reg no. (KA-01...), customer, job...</span>
+            </div>
+            <span className="text-[10px] text-neutral-400 font-medium shrink-0 ml-1.5 bg-white px-1.5 py-0.5 rounded border border-neutral-200">
+              ⌘K
+            </span>
+          </button>
         </div>
       </header>
 
