@@ -1,0 +1,8 @@
+{
+  "name": "Remix Auto Clinic – Workshop Management System",
+  "description": "Lifetime digital service history, job cards, vehicle diagnostics, complaints, and workshop operations management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

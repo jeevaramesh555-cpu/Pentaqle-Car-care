@@ -1,0 +1,126 @@
+import { ServicePerformed } from '../types/service';
+
+export const initialServices: ServicePerformed[] = [
+  // Innova Visit 1 (JOB-000102)
+  {
+    id: 'SRV-000001',
+    jobId: 'JOB-000102',
+    serviceName: 'Engine Oil & Filter Change',
+    category: 'Lubrication',
+    technician: 'Imran Khan',
+    description: 'Drained old oil, installed OEM Toyota filter, filled 6.5L Toyota 5W-30 Synthetic.',
+    status: 'Completed',
+    completedDate: '2024-10-15',
+    notes: 'Torqued drain bolt to 38 Nm with new copper crush washer.',
+  },
+  {
+    id: 'SRV-000002',
+    jobId: 'JOB-000102',
+    serviceName: 'Air Filter & Cabin Filter Replacement',
+    category: 'Periodic',
+    technician: 'Imran Khan',
+    description: 'Replaced primary engine air intake filter and activated carbon cabin filter.',
+    status: 'Completed',
+    completedDate: '2024-10-15',
+  },
+  {
+    id: 'SRV-000003',
+    jobId: 'JOB-000102',
+    serviceName: '4-Wheel Brake Caliper Cleaning & Pin Greasing',
+    category: 'Brakes',
+    technician: 'Imran Khan',
+    description: 'Cleaned caliper sliders, lubricated slide pins with silicone ceramic grease.',
+    status: 'Completed',
+    completedDate: '2024-10-16',
+  },
+
+  // Innova Visit 2 (JOB-000115)
+  {
+    id: 'SRV-000004',
+    jobId: 'JOB-000115',
+    serviceName: 'Front Brake Pad Replacement & Rotor Glaze Removal',
+    category: 'Brakes',
+    technician: 'Imran Khan',
+    description: 'Fitted new Bosch ceramic front brake pads. Cleaned brake dust and deglazed rotor surface.',
+    status: 'Completed',
+    completedDate: '2025-03-13',
+    notes: 'Brake fluid level checked and topped up with DOT4.',
+  },
+
+  // Innova Visit 3 (JOB-000121)
+  {
+    id: 'SRV-000005',
+    jobId: 'JOB-000121',
+    serviceName: 'Periodic 80,000 km Major Maintenance',
+    category: 'Periodic',
+    technician: 'Imran Khan',
+    description: 'Engine oil, oil filter, diesel fuel filter element, transmission fluid inspection.',
+    status: 'Completed',
+    completedDate: '2025-11-19',
+  },
+  {
+    id: 'SRV-000006',
+    jobId: 'JOB-000121',
+    serviceName: 'Rear Suspension Bush Replacement',
+    category: 'Suspension',
+    technician: 'Imran Khan',
+    description: 'Pressed out cracked anti-roll bar stabilizer bushes and installed reinforced polyurethane bushes.',
+    status: 'Completed',
+    completedDate: '2025-11-19',
+  },
+
+  // Innova Current Visit (JOB-000128)
+  {
+    id: 'SRV-000007',
+    jobId: 'JOB-000128',
+    serviceName: 'Front Brake Disc Rotors Replacement',
+    category: 'Brakes',
+    technician: 'Imran Khan',
+    description: 'Installed pair of genuine Toyota ventilated front brake rotors. Torqued hub bolts to factory spec.',
+    status: 'Completed',
+    completedDate: '2026-09-24',
+    notes: 'Cleaned wheel hub mating surfaces with wire brush before rotor seating.',
+  },
+  {
+    id: 'SRV-000008',
+    jobId: 'JOB-000128',
+    serviceName: 'Front Ceramic Brake Pad Set Installation',
+    category: 'Brakes',
+    technician: 'Imran Khan',
+    description: 'Installed matching OEM grade ceramic brake pads with anti-squeal shims.',
+    status: 'Completed',
+    completedDate: '2026-09-24',
+  },
+  {
+    id: 'SRV-000009',
+    jobId: 'JOB-000128',
+    serviceName: 'Computerized 4-Wheel Alignment & Balancing',
+    category: 'Steering & Suspension',
+    technician: 'Imran Khan',
+    description: 'Adjusted front tie rods to correct +1.5 toe out. Laser checked rear thrust angle.',
+    status: 'In Progress',
+    notes: 'Technician currently setting tie rod lock nuts on alignment ramp.',
+  },
+
+  // Services for Nexon (JOB-000125)
+  {
+    id: 'SRV-000010',
+    jobId: 'JOB-000125',
+    serviceName: 'Scheduled 45,000 km Periodic Service',
+    category: 'Periodic',
+    technician: 'Imran Khan',
+    description: 'Castrol 5W-30 Fully Synthetic diesel oil replacement, oil filter, air filter, fuel filter bleed.',
+    status: 'Completed',
+    completedDate: '2026-09-23',
+  },
+  {
+    id: 'SRV-000011',
+    jobId: 'JOB-000125',
+    serviceName: 'Fuel Injector Ultrasonic Cleaning',
+    category: 'Engine',
+    technician: 'Imran Khan',
+    description: 'Cleaned diesel common-rail injectors on test bench and verified spray patterns.',
+    status: 'Completed',
+    completedDate: '2026-09-23',
+  },
+];

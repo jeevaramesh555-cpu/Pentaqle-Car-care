@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@media print {
+  /* Hide navigation, sidebar, headers, and UI chrome */
+  header,
+  aside,
+  nav,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Make main content area occupy full page */
+  main {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Prevent page breaks inside cards/tables */
+  tr,
+  table,
+  .print-avoid-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}

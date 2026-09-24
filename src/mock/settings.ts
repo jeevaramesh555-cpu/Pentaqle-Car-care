@@ -1,0 +1,31 @@
+import { WorkshopSettings } from '../types/settings';
+
+export const initialSettings: WorkshopSettings = {
+  workshopName: 'Auto Clinic – Precision Automobile Workshop',
+  tagline: 'Lifetime Vehicle Health & Digital Service History',
+  address: '#48, Outer Ring Road, 7th Sector, HSR Layout',
+  city: 'Bengaluru',
+  state: 'Karnataka',
+  pin: '560102',
+  phone: '+91 98450 88220',
+  whatsApp: '+91 98450 88220',
+  email: 'service@autoclinic.in',
+  gstin: '29ABCDE1234F1Z5',
+  website: 'https://autoclinic.in',
+  currency: '₹',
+  timezone: 'Asia/Kolkata',
+  dateFormat: 'DD/MM/YYYY',
+  jobCardPrefix: 'JOB-',
+  customerPrefix: 'CUS-',
+  vehiclePrefix: 'VEH-',
+  modules: {
+    coreWorkshop: true,
+    billing: false,
+    inventory: false,
+    payments: false,
+    expenses: false,
+    whatsAppNotifications: false,
+    serviceReminders: false,
+    customerPortal: false,
+  },
+};
