@@ -21,7 +21,7 @@ import { Vehicle } from '../../types/vehicle';
 import { Customer } from '../../types/customer';
 import { PageHeader } from '../../components/common/PageHeader';
 import { StatusBadge } from '../../components/common/StatusBadge';
-import { formatDate, formatOdometer } from '../../utils/formatters';
+import { formatDate, formatOdometer, formatIndianRegNumber } from '../../utils/formatters';
 import { JobCardCreateModal } from './JobCardCreateModal';
 import { useAuth } from '../../context/AuthContext';
 import { useSettings } from '../../context/SettingsContext';
@@ -232,7 +232,7 @@ export const JobCardListPage: React.FC = () => {
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-2">
                           <span className="font-mono font-bold text-neutral-900">
-                            {veh?.registrationNumber || 'N/A'}
+                            {veh?.registrationNumber ? formatIndianRegNumber(veh.registrationNumber) : 'N/A'}
                           </span>
                           <span className="text-xs text-neutral-500">
                             {veh ? `${veh.make} ${veh.model}` : ''}
@@ -304,7 +304,7 @@ export const JobCardListPage: React.FC = () => {
                   <div className="flex items-start justify-between gap-2.5">
                     <div className="min-w-0 flex-1">
                       <div className="font-mono font-bold text-sm text-neutral-900 truncate">
-                        {job.id} · {veh?.registrationNumber}
+                        {job.id} · {veh?.registrationNumber ? formatIndianRegNumber(veh.registrationNumber) : 'N/A'}
                       </div>
                       <div className="text-xs text-neutral-500 mt-0.5 truncate">
                         {cust?.name} · {veh ? `${veh.make} ${veh.model}` : ''}

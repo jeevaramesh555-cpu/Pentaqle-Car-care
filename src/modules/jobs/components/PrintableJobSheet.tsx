@@ -1,7 +1,7 @@
 import React from 'react';
 import { FullJobCardDetail } from '../../../services/jobRepository';
 import { WorkshopSettings } from '../../../types/settings';
-import { formatDate, formatOdometer } from '../../../utils/formatters';
+import { formatDate, formatOdometer, formatIndianRegNumber } from '../../../utils/formatters';
 
 interface PrintableJobSheetProps {
   details: FullJobCardDetail;
@@ -74,7 +74,7 @@ export const PrintableJobSheet: React.FC<PrintableJobSheetProps> = ({ details, s
             Vehicle Information
           </h3>
           <p className="font-bold text-xs font-mono text-neutral-900">
-            {vehicle?.registrationNumber || 'N/A'}
+            {vehicle?.registrationNumber ? formatIndianRegNumber(vehicle.registrationNumber) : 'N/A'}
           </p>
           <p className="font-medium text-[10px]">
             {vehicle?.make} {vehicle?.model} {vehicle?.variant} {vehicle?.year ? `(${vehicle.year})` : ''}

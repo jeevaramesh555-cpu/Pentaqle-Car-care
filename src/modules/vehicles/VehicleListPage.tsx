@@ -21,7 +21,7 @@ import { Customer } from '../../types/customer';
 import { JobCard } from '../../types/jobCard';
 import { PageHeader } from '../../components/common/PageHeader';
 import { StatusBadge } from '../../components/common/StatusBadge';
-import { formatOdometer, formatDate } from '../../utils/formatters';
+import { formatOdometer, formatDate, formatIndianRegNumber } from '../../utils/formatters';
 import { VehicleFormModal } from './VehicleFormModal';
 import { useAuth } from '../../context/AuthContext';
 
@@ -211,7 +211,7 @@ export const VehicleListPage: React.FC = () => {
                           </div>
                           <div>
                             <div className="font-mono font-bold text-neutral-900 tracking-wider">
-                              {veh.registrationNumber}
+                              {formatIndianRegNumber(veh.registrationNumber)}
                             </div>
                             <div className="text-xs text-neutral-500">
                               {veh.make} {veh.model} {veh.variant && `· ${veh.variant}`}
@@ -279,7 +279,7 @@ export const VehicleListPage: React.FC = () => {
                   <div className="flex items-start justify-between">
                     <div>
                       <div className="font-mono font-bold text-neutral-900 text-base tracking-wider">
-                        {veh.registrationNumber}
+                        {formatIndianRegNumber(veh.registrationNumber)}
                       </div>
                       <div className="text-xs text-neutral-600 font-medium">
                         {veh.make} {veh.model} {veh.variant && `(${veh.variant})`}

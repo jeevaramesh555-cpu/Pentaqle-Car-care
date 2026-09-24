@@ -11,6 +11,7 @@ import { ModuleRouteGuard } from './components/common/ModuleRouteGuard';
 import { DashboardPage } from './modules/dashboard/DashboardPage';
 import { VehicleListPage } from './modules/vehicles/VehicleListPage';
 import { VehicleDetailPage } from './modules/vehicles/VehicleDetailPage';
+import { ServiceHistoryPage } from './modules/history/ServiceHistoryPage';
 import { CustomerListPage } from './modules/customers/CustomerListPage';
 import { CustomerDetailPage } from './modules/customers/CustomerDetailPage';
 import { JobCardListPage } from './modules/jobs/JobCardListPage';
@@ -56,6 +57,14 @@ export default function App() {
                   element={
                     <ProtectedRoute action="view_vehicles">
                       <VehicleDetailPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/history"
+                  element={
+                    <ProtectedRoute action="view_vehicles">
+                      <ServiceHistoryPage />
                     </ProtectedRoute>
                   }
                 />

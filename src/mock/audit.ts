@@ -9,7 +9,7 @@ export const initialAuditLogs: AuditLogEntry[] = [
     action: 'Created',
     module: 'Job Card',
     recordId: 'JOB-000128',
-    description: 'Opened new Job Card for Toyota Innova Crysta (KA-01-MJ-4821) at 91,220 km.',
+    description: 'Opened new Job Card for Toyota Innova Crysta (KA01MJ4821) at 91,220 km.',
   },
   {
     id: 'AUD-000002',

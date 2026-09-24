@@ -9,6 +9,7 @@ import {
   FileSpreadsheet,
   UserCog,
   History,
+  ScrollText,
   Settings,
   Receipt,
   Boxes,
@@ -59,6 +60,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
       items: [
         { name: 'Customers', to: '/customers', icon: Users, permission: 'view_customers' },
         { name: 'Vehicles', to: '/vehicles', icon: Car, permission: 'view_vehicles' },
+        { name: 'Service History', to: '/history', icon: History, permission: 'view_vehicles' },
         { name: 'Job Cards', to: '/jobs', icon: ClipboardList, permission: 'view_jobs' },
       ],
     },
@@ -86,7 +88,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
       title: 'Administration',
       items: [
         { name: 'Users & Access', to: '/users', icon: UserCog, permission: 'manage_users' },
-        { name: 'Audit Log', to: '/audit', icon: History, permission: 'view_audit_logs' },
+        { name: 'Audit Log', to: '/audit', icon: ScrollText, permission: 'view_audit_logs' },
         { name: 'Workshop Settings', to: '/settings', icon: Settings, permission: 'manage_settings' },
       ],
     },

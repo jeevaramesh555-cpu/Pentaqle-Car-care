@@ -35,7 +35,7 @@ export function formatDateTime(isoString: string | undefined | null): string {
   }
 }
 
-export function formatIndianRegNumber(reg: string): string {
+export function formatIndianRegNumber(reg: string | undefined | null): string {
   if (!reg) return '';
-  return reg.toUpperCase().trim();
+  return reg.replace(/[^A-Za-z0-9]/g, '').toUpperCase().trim();
 }

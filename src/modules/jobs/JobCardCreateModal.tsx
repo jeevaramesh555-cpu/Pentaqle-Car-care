@@ -12,7 +12,7 @@ import { FuelLevel } from '../../types/jobCard';
 import { ComplaintCategory } from '../../types/complaint';
 import { useAuth } from '../../context/AuthContext';
 import { useNotification } from '../../context/NotificationContext';
-import { formatOdometer } from '../../utils/formatters';
+import { formatOdometer, formatIndianRegNumber } from '../../utils/formatters';
 
 interface JobCardCreateModalProps {
   isOpen: boolean;
@@ -182,7 +182,7 @@ export const JobCardCreateModal: React.FC<JobCardCreateModalProps> = ({
                   const cust = customers.find((c) => c.id === v.customerId);
                   return (
                     <option key={v.id} value={v.id}>
-                      {v.registrationNumber} — {v.make} {v.model} ({cust?.name || 'Owner'})
+                      {formatIndianRegNumber(v.registrationNumber)} — {v.make} {v.model} ({cust?.name || 'Owner'})
                     </option>
                   );
                 })}
@@ -199,7 +199,7 @@ export const JobCardCreateModal: React.FC<JobCardCreateModalProps> = ({
                 </div>
                 <div className="min-w-0">
                   <div className="font-bold text-neutral-900 text-sm truncate">
-                    {currentVehicle.registrationNumber}
+                    {formatIndianRegNumber(currentVehicle.registrationNumber)}
                   </div>
                   <div className="text-neutral-500 truncate">
                     {currentVehicle.make} {currentVehicle.model} {currentVehicle.variant} ({currentVehicle.year})

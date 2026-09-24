@@ -11,7 +11,7 @@ import {
 import { FullJobCardDetail } from '../../../services/jobRepository';
 import { JobCardStatus } from '../../../types/jobCard';
 import { StatusBadge } from '../../../components/common/StatusBadge';
-import { formatDate, formatOdometer } from '../../../utils/formatters';
+import { formatDate, formatOdometer, formatIndianRegNumber } from '../../../utils/formatters';
 
 interface JobOverviewProps {
   details: FullJobCardDetail;
@@ -57,8 +57,8 @@ export const JobOverview: React.FC<JobOverviewProps> = ({
                   onClick={() => navigate(`/vehicles/${vehicle.id}`)}
                   className="font-mono font-bold text-neutral-900 hover:underline flex items-center gap-1"
                 >
-                  <span>{vehicle.registrationNumber}</span>
-                  <ExternalLink className="w-3 h-3 text-neutral-400" />
+                  <span>{formatIndianRegNumber(vehicle.registrationNumber)}</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-neutral-400" />
                 </button>
                 <span className="text-neutral-500">
                   ({vehicle.make} {vehicle.model} {vehicle.variant})

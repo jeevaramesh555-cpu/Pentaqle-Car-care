@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Car, User as UserIcon, FileText, ArrowRight, X, Clock, AlertCircle } from 'lucide-react';
 import { searchService, SearchResults } from '../../services/searchService';
-import { formatOdometer, formatDate } from '../../utils/formatters';
+import { formatOdometer, formatDate, formatIndianRegNumber } from '../../utils/formatters';
 import { StatusBadge } from './StatusBadge';
 import { useSettings } from '../../context/SettingsContext';
 
@@ -151,7 +151,7 @@ export const QuickSearchModal: React.FC<QuickSearchModalProps> = ({
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="font-mono font-bold text-neutral-900 tracking-wider text-sm bg-neutral-100 px-2 py-0.5 rounded border border-neutral-200">
-                          {v.registrationNumber}
+                          {formatIndianRegNumber(v.registrationNumber)}
                         </span>
                         <span className="font-semibold text-neutral-800 text-sm">
                           {v.make} {v.model}
@@ -234,7 +234,7 @@ export const QuickSearchModal: React.FC<QuickSearchModalProps> = ({
                         <span className="font-mono font-semibold text-neutral-900 text-sm">{j.id}</span>
                         <StatusBadge status={j.status} size="sm" />
                         <span className="font-mono text-xs text-neutral-600 bg-neutral-100 px-1.5 py-0.5 rounded">
-                          {j.regNumber}
+                          {formatIndianRegNumber(j.regNumber)}
                         </span>
                       </div>
                       <div className="flex items-center gap-2 mt-1 text-xs text-neutral-500">

@@ -13,7 +13,7 @@ import { Customer } from '../../../types/customer';
 import { JobCard } from '../../../types/jobCard';
 import { Recommendation } from '../../../types/recommendation';
 import { StatusBadge } from '../../../components/common/StatusBadge';
-import { formatOdometer, formatDate } from '../../../utils/formatters';
+import { formatOdometer, formatDate, formatIndianRegNumber } from '../../../utils/formatters';
 
 interface VehicleOverviewProps {
   vehicle: Vehicle;
@@ -54,7 +54,7 @@ export const VehicleOverview: React.FC<VehicleOverviewProps> = ({
           <div>
             <div className="flex flex-wrap items-center gap-2.5">
               <span className="font-mono font-bold text-2xl tracking-wider text-neutral-900">
-                {vehicle.registrationNumber}
+                {formatIndianRegNumber(vehicle.registrationNumber)}
               </span>
               <StatusBadge status={vehicle.status} />
               <span className="text-xs font-mono text-neutral-400">ID: {vehicle.id}</span>

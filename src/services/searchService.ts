@@ -2,6 +2,7 @@ import { storage } from './storage';
 import { Customer } from '../types/customer';
 import { Vehicle } from '../types/vehicle';
 import { JobCard } from '../types/jobCard';
+import { formatIndianRegNumber } from '../utils/formatters';
 
 export interface SearchResults {
   customers: Array<Customer & { visitCount: number }>;
@@ -82,7 +83,7 @@ export const searchService = {
       const veh = vehicles.find((v) => v.id === j.vehicleId);
       return {
         ...j,
-        regNumber: veh ? veh.registrationNumber : 'Unknown',
+        regNumber: veh ? formatIndianRegNumber(veh.registrationNumber) : 'Unknown',
         model: veh ? `${veh.make} ${veh.model}` : 'Unknown',
         customerName: cust ? cust.name : 'Unknown',
       };

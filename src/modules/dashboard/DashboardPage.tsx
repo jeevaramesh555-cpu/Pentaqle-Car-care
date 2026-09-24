@@ -9,7 +9,6 @@ import {
   Users,
   ArrowRight,
   Plus,
-  Wrench,
   Sparkles,
   ChevronRight,
   ShieldAlert,
@@ -23,7 +22,7 @@ import { Vehicle } from '../../types/vehicle';
 import { Customer } from '../../types/customer';
 import { Recommendation } from '../../types/recommendation';
 import { StatusBadge } from '../../components/common/StatusBadge';
-import { formatDate, formatOdometer } from '../../utils/formatters';
+import { formatDate, formatOdometer, formatIndianRegNumber } from '../../utils/formatters';
 import { useAuth } from '../../context/AuthContext';
 import { useSettings } from '../../context/SettingsContext';
 
@@ -70,7 +69,6 @@ export const DashboardPage: React.FC = () => {
 
   // Calculate operational stats
   const openJobs = jobs.filter((j) => ['Open', 'Inspection', 'Waiting Approval', 'Waiting Parts'].includes(j.status));
-  const inProgressJobs = jobs.filter((j) => j.status === 'In Progress');
   const readyJobs = jobs.filter((j) => j.status === 'Ready');
   const completedJobs = jobs.filter((j) => ['Delivered', 'Closed'].includes(j.status));
 
@@ -81,7 +79,7 @@ export const DashboardPage: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Primary KPI Grid (Operational - strictly non-billing) */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
         <div className="p-4 bg-white rounded-xl border border-neutral-200 shadow-2xs">
           <div className="flex items-center justify-between text-neutral-500 mb-2">
             <span className="text-xs font-medium">In Workshop Today</span>
@@ -106,17 +104,6 @@ export const DashboardPage: React.FC = () => {
 
         <div className="p-4 bg-white rounded-xl border border-neutral-200 shadow-2xs">
           <div className="flex items-center justify-between text-neutral-500 mb-2">
-            <span className="text-xs font-medium">In Progress</span>
-            <Wrench className="w-4 h-4 text-sky-500" />
-          </div>
-          <div className="text-2xl sm:text-3xl font-bold font-mono tabular-nums text-neutral-900">
-            {inProgressJobs.length}
-          </div>
-          <span className="text-[11px] text-sky-600 font-medium mt-1 block">On hoist / bay</span>
-        </div>
-
-        <div className="p-4 bg-white rounded-xl border border-neutral-200 shadow-2xs">
-          <div className="flex items-center justify-between text-neutral-500 mb-2">
             <span className="text-xs font-medium">Ready for Delivery</span>
             <CheckCircle2 className="w-4 h-4 text-emerald-600" />
           </div>
@@ -126,7 +113,7 @@ export const DashboardPage: React.FC = () => {
           <span className="text-[11px] text-emerald-600 font-medium mt-1 block">Quality passed</span>
         </div>
 
-        <div className="p-4 bg-white rounded-xl border border-neutral-200 shadow-2xs col-span-2 sm:col-span-1">
+        <div className="p-4 bg-white rounded-xl border border-neutral-200 shadow-2xs">
           <div className="flex items-center justify-between text-neutral-500 mb-2">
             <span className="text-xs font-medium">Pending Recs</span>
             <AlertCircle className="w-4 h-4 text-orange-500" />
@@ -138,7 +125,7 @@ export const DashboardPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Main 2-Column Split: Active Job Cards & Lifetime History Highlights */}
+      {/* Main 2-Column Split: Active Jobs */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column (2/3): Active Floor Job Cards */}
         <div className="lg:col-span-2 space-y-6">
@@ -147,7 +134,7 @@ export const DashboardPage: React.FC = () => {
             <div className="flex items-center justify-between px-5 py-4 border-b border-neutral-200">
               <div className="flex items-center gap-2">
                 <ClipboardList className="w-4 h-4 text-neutral-700" />
-                <h2 className="text-sm font-bold text-neutral-900">Active Workshop Visits & Job Cards</h2>
+                <h2 className="text-sm font-bold text-neutral-900">Active Jobs</h2>
               </div>
               <button
                 onClick={() => navigate('/jobs')}
@@ -175,14 +162,14 @@ export const DashboardPage: React.FC = () => {
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="font-mono font-bold text-sm text-neutral-900 tracking-wider">
-                            {vehicle?.registrationNumber || 'N/A'}
+                            {vehicle?.registrationNumber ? formatIndianRegNumber(vehicle.registrationNumber) : 'N/A'}
                           </span>
                           <span className="text-xs text-neutral-500">
                             {vehicle ? `${vehicle.make} ${vehicle.model}` : ''}
                           </span>
                         </div>
                         <div className="flex items-center gap-2 mt-1 text-xs text-neutral-500">
-                          <span>Owner: <strong className="text-neutral-700 font-medium">{customer?.name}</strong></span>
+                          <span className="text-neutral-700 font-medium">{customer?.name}</span>
                           <span aria-hidden="true">·</span>
                           <span className="font-mono tabular-nums">{formatOdometer(job.odometer)}</span>
                           <span aria-hidden="true">·</span>
@@ -269,32 +256,25 @@ export const DashboardPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Column (1/3): Lifetime History Showcase & Audit Feed */}
+        {/* Right Column (1/3): Fleet Roster & Service History */}
         <div className="space-y-6">
-          {/* Spotlight Vehicle: Lifetime Digital Service History Demo */}
-          <div className="p-5 bg-neutral-900 text-white rounded-xl shadow-md border border-neutral-800">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-400">
-                Lifetime History Highlight
-              </span>
-              <span className="text-[11px] text-neutral-400 font-mono">4 Recorded Visits</span>
+          {/* Quick Access to Dedicated Lifetime Service History Page */}
+          <div className="p-4 bg-white rounded-xl border border-neutral-200 shadow-2xs flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center text-neutral-800">
+                <Clock className="w-4 h-4" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-neutral-900">Service History Archive</h4>
+                <p className="text-[11px] text-neutral-500">Explore complete lifetime timelines</p>
+              </div>
             </div>
-            <div className="font-mono font-bold text-xl text-white tracking-wider mb-1">
-              KA-01-MJ-4821
-            </div>
-            <div className="text-sm font-medium text-neutral-300">
-              Toyota Innova Crysta 2.4 ZX
-            </div>
-            <p className="text-xs text-neutral-400 mt-2 leading-relaxed">
-              Showcases complete chronological lifecycle from 62,100 km to 91,220 km, including repeat brake complaints, Bosch to Brembo replacement history, and pending battery advice.
-            </p>
-
             <button
-              onClick={() => navigate('/vehicles/VEH-000001')}
-              className="mt-4 w-full py-2 px-3 text-xs font-semibold text-neutral-900 bg-amber-400 hover:bg-amber-300 rounded-md transition-colors flex items-center justify-center gap-1.5"
+              onClick={() => navigate('/history')}
+              className="text-xs font-semibold text-neutral-700 hover:text-neutral-950 flex items-center gap-1 group py-1.5 px-2.5 rounded-lg border border-neutral-200 hover:bg-neutral-50 transition-colors cursor-pointer"
             >
-              <span>Inspect Lifetime History</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span>Explore</span>
+              <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
           </div>
 
@@ -312,7 +292,7 @@ export const DashboardPage: React.FC = () => {
               </button>
             </div>
             <div className="space-y-2">
-              {vehicles.slice(0, 4).map((veh) => {
+              {vehicles.slice(0, 5).map((veh) => {
                 const owner = customers.find((c) => c.id === veh.customerId);
                 return (
                   <div
@@ -322,7 +302,7 @@ export const DashboardPage: React.FC = () => {
                   >
                     <div>
                       <div className="font-mono font-bold text-neutral-900 group-hover:text-amber-600 transition-colors">
-                        {veh.registrationNumber}
+                        {formatIndianRegNumber(veh.registrationNumber)}
                       </div>
                       <div className="text-neutral-500">
                         {veh.make} {veh.model} · {owner?.name}

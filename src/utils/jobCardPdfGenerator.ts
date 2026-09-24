@@ -2,7 +2,7 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { FullJobCardDetail } from '../services/jobRepository';
 import { WorkshopSettings } from '../types/settings';
-import { formatDate, formatOdometer } from './formatters';
+import { formatDate, formatOdometer, formatIndianRegNumber } from './formatters';
 
 export const generateJobCardPdf = (
   details: FullJobCardDetail,
@@ -187,7 +187,7 @@ export const generateJobCardPdf = (
 
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(10.5);
-  doc.text(vehicle?.registrationNumber || 'N/A', vehX + 3.5, currentY + 11);
+  doc.text(vehicle?.registrationNumber ? formatIndianRegNumber(vehicle.registrationNumber) : 'N/A', vehX + 3.5, currentY + 11);
 
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8.5);

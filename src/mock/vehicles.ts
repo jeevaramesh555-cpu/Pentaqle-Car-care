@@ -4,7 +4,7 @@ export const initialVehicles: Vehicle[] = [
   {
     id: 'VEH-000001',
     customerId: 'CUS-000001',
-    registrationNumber: 'KA-01-MJ-4821',
+    registrationNumber: 'KA01MJ4821',
     make: 'Toyota',
     model: 'Innova Crysta',
     variant: '2.4 ZX 7S',
@@ -23,7 +23,7 @@ export const initialVehicles: Vehicle[] = [
   {
     id: 'VEH-000002',
     customerId: 'CUS-000001',
-    registrationNumber: 'KA-04-ME-1192',
+    registrationNumber: 'KA04ME1192',
     make: 'Maruti Suzuki',
     model: 'Swift',
     variant: 'ZXi AMT',
@@ -42,7 +42,7 @@ export const initialVehicles: Vehicle[] = [
   {
     id: 'VEH-000003',
     customerId: 'CUS-000002',
-    registrationNumber: 'KL-07-BQ-1982',
+    registrationNumber: 'KL07BQ1982',
     make: 'Tata',
     model: 'Nexon',
     variant: 'XZ+ (S) Diesel',
@@ -61,7 +61,7 @@ export const initialVehicles: Vehicle[] = [
   {
     id: 'VEH-000004',
     customerId: 'CUS-000003',
-    registrationNumber: 'DL-03-TC-5520',
+    registrationNumber: 'DL03TC5520',
     make: 'Mahindra',
     model: 'XUV700',
     variant: 'AX7 L AWD Diesel',
@@ -80,7 +80,7 @@ export const initialVehicles: Vehicle[] = [
   {
     id: 'VEH-000005',
     customerId: 'CUS-000004',
-    registrationNumber: 'TN-09-BK-3914',
+    registrationNumber: 'TN09BK3914',
     make: 'Honda',
     model: 'City',
     variant: 'ZX i-VTEC',
@@ -99,7 +99,7 @@ export const initialVehicles: Vehicle[] = [
   {
     id: 'VEH-000006',
     customerId: 'CUS-000005',
-    registrationNumber: 'MH-02-CB-8839',
+    registrationNumber: 'MH02CB8839',
     make: 'Hyundai',
     model: 'i20',
     variant: 'Asta (O) Turbo DCT',

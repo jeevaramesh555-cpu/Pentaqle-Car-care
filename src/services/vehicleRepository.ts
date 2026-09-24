@@ -7,6 +7,7 @@ import { ServicePerformed } from '../types/service';
 import { PartUsage } from '../types/part';
 import { Recommendation } from '../types/recommendation';
 import { auditRepository } from './auditRepository';
+import { formatIndianRegNumber } from '../utils/formatters';
 
 export interface VehicleJobCardSummary {
   job: JobCard;
@@ -73,7 +74,7 @@ export const vehicleRepository = {
     const newVehicle: Vehicle = {
       ...data,
       id: newId,
-      registrationNumber: data.registrationNumber.toUpperCase().trim(),
+      registrationNumber: formatIndianRegNumber(data.registrationNumber),
       createdAt: new Date().toISOString(),
     };
     storage.saveVehicles([newVehicle, ...vehicles]);
@@ -98,7 +99,7 @@ export const vehicleRepository = {
     const updated = {
       ...vehicles[idx],
       ...data,
-      registrationNumber: data.registrationNumber ? data.registrationNumber.toUpperCase().trim() : vehicles[idx].registrationNumber,
+      registrationNumber: data.registrationNumber ? formatIndianRegNumber(data.registrationNumber) : vehicles[idx].registrationNumber,
     };
     vehicles[idx] = updated;
     storage.saveVehicles(vehicles);

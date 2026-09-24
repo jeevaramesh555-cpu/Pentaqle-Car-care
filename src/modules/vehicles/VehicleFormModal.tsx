@@ -6,6 +6,7 @@ import { vehicleRepository } from '../../services/vehicleRepository';
 import { customerRepository } from '../../services/customerRepository';
 import { useAuth } from '../../context/AuthContext';
 import { useNotification } from '../../context/NotificationContext';
+import { formatIndianRegNumber } from '../../utils/formatters';
 
 interface VehicleFormModalProps {
   isOpen: boolean;
@@ -207,9 +208,9 @@ export const VehicleFormModal: React.FC<VehicleFormModalProps> = ({
               </label>
               <input
                 type="text"
-                placeholder="e.g. KA-01-MJ-4821"
+                placeholder="e.g. TN11AB1234"
                 value={registrationNumber}
-                onChange={(e) => setRegistrationNumber(e.target.value.toUpperCase())}
+                onChange={(e) => setRegistrationNumber(formatIndianRegNumber(e.target.value))}
                 className="w-full px-3 py-2 text-sm bg-white border border-neutral-300 rounded-lg text-neutral-900 font-mono uppercase focus:ring-2 focus:ring-neutral-900 focus:outline-none"
                 required
               />

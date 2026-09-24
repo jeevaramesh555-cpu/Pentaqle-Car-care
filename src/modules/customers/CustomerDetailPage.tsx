@@ -22,7 +22,7 @@ import { Customer } from '../../types/customer';
 import { Vehicle } from '../../types/vehicle';
 import { JobCard } from '../../types/jobCard';
 import { StatusBadge } from '../../components/common/StatusBadge';
-import { formatDate, formatOdometer } from '../../utils/formatters';
+import { formatDate, formatOdometer, formatIndianRegNumber } from '../../utils/formatters';
 import { CustomerFormModal } from './CustomerFormModal';
 import { VehicleFormModal } from '../vehicles/VehicleFormModal';
 import { ConfirmModal } from '../../components/common/ConfirmModal';
@@ -204,7 +204,7 @@ export const CustomerDetailPage: React.FC = () => {
                   <div className="flex items-start justify-between">
                     <div>
                       <span className="font-mono font-bold text-base tracking-wider text-neutral-900 group-hover:text-amber-600 transition-colors">
-                        {v.registrationNumber}
+                        {formatIndianRegNumber(v.registrationNumber)}
                       </span>
                       <div className="text-sm font-semibold text-neutral-800 mt-0.5">
                         {v.make} {v.model} {v.variant && `· ${v.variant}`}

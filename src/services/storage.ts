@@ -22,6 +22,7 @@ import { Recommendation } from '../types/recommendation';
 import { User } from '../types/user';
 import { WorkshopSettings } from '../types/settings';
 import { AuditLogEntry } from '../types/audit';
+import { formatIndianRegNumber } from '../utils/formatters';
 
 export const APP_STORAGE_NAMESPACE = 'workshop_app_';
 
@@ -37,7 +38,7 @@ const STORAGE_KEYS = {
   USERS: `${APP_STORAGE_NAMESPACE}users`,
   SETTINGS: `${APP_STORAGE_NAMESPACE}settings`,
   AUDIT: `${APP_STORAGE_NAMESPACE}audit`,
-  INITIALIZED: `${APP_STORAGE_NAMESPACE}initialized_v2`,
+  INITIALIZED: `${APP_STORAGE_NAMESPACE}initialized_v3`,
 };
 
 // Memory fallback in case localStorage is unavailable in iframe sandbox
@@ -94,8 +95,20 @@ export const storage = {
   getCustomers: (): Customer[] => getItem(STORAGE_KEYS.CUSTOMERS, initialCustomers),
   saveCustomers: (data: Customer[]) => setItem(STORAGE_KEYS.CUSTOMERS, data),
 
-  getVehicles: (): Vehicle[] => getItem(STORAGE_KEYS.VEHICLES, initialVehicles),
-  saveVehicles: (data: Vehicle[]) => setItem(STORAGE_KEYS.VEHICLES, data),
+  getVehicles: (): Vehicle[] => {
+    const list = getItem(STORAGE_KEYS.VEHICLES, initialVehicles);
+    return list.map((v) => ({
+      ...v,
+      registrationNumber: v.registrationNumber ? formatIndianRegNumber(v.registrationNumber) : '',
+    }));
+  },
+  saveVehicles: (data: Vehicle[]) => {
+    const sanitized = data.map((v) => ({
+      ...v,
+      registrationNumber: v.registrationNumber ? formatIndianRegNumber(v.registrationNumber) : '',
+    }));
+    setItem(STORAGE_KEYS.VEHICLES, sanitized);
+  },
 
   getJobCards: (): JobCard[] => getItem(STORAGE_KEYS.JOB_CARDS, initialJobCards),
   saveJobCards: (data: JobCard[]) => setItem(STORAGE_KEYS.JOB_CARDS, data),
