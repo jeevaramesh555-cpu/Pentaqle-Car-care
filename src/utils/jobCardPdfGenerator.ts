@@ -44,23 +44,59 @@ export const generateJobCardPdf = (
 
   // 1. TOP HEADER & WORKSHOP IDENTITY
   // -------------------------------------------------------------
+  const topBarHeight = 1.8;
   doc.setFillColor(...primaryNavy);
-  doc.rect(margin, currentY, contentWidth, 2, 'F');
-  currentY += 5;
+  doc.rect(margin, currentY, contentWidth, topBarHeight, 'F');
 
-  // Workshop Name & details (Left)
+  // Leave clean vertical breathing room below the top bar
+  const headerContentStartY = currentY + topBarHeight + 4.5;
+
+  // Right Header: Job Card Badge Box
+  const badgeWidth = 62;
+  const badgeHeight = 25;
+  const badgeX = pageWidth - margin - badgeWidth;
+  const badgeY = headerContentStartY;
+
+  doc.setFillColor(248, 250, 252);
+  doc.setDrawColor(...borderColor);
+  doc.setLineWidth(0.3);
+  doc.roundedRect(badgeX, badgeY, badgeWidth, badgeHeight, 2, 2, 'FD');
+
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(16);
-  doc.setTextColor(...primaryNavy);
-  doc.text((settings.workshopName || 'AUTO CLINIC').toUpperCase(), margin, currentY);
+  doc.setFontSize(7.5);
+  doc.setTextColor(...mutedGray);
+  doc.text('JOB CARD / WORK ORDER', badgeX + 4.5, badgeY + 5.5);
 
-  currentY += 4.5;
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(13);
+  doc.setTextColor(...primaryNavy);
+  doc.text(job.id, badgeX + 4.5, badgeY + 12.5);
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(7.5);
+  doc.setTextColor(...darkGray);
+  doc.text(`Date: ${formatDate(job.date)}`, badgeX + 4.5, badgeY + 17.5);
+  doc.text(`Status: ${job.status.toUpperCase()}`, badgeX + 4.5, badgeY + 22);
+
+  // Left Column: Workshop Name & Details (constrained so it never overlaps right badge)
+  const leftColWidth = badgeX - margin - 5;
+  let leftY = headerContentStartY + 5;
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(15);
+  doc.setTextColor(...primaryNavy);
+  const workshopTitle = (settings.workshopName || 'AUTO CLINIC').toUpperCase();
+  const splitTitle = doc.splitTextToSize(workshopTitle, leftColWidth);
+  doc.text(splitTitle, margin, leftY);
+  leftY += (splitTitle.length - 1) * 5 + 4.2;
+
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8.5);
   doc.setTextColor(...darkGray);
   if (settings.tagline) {
-    doc.text(settings.tagline, margin, currentY);
-    currentY += 4;
+    const splitTagline = doc.splitTextToSize(settings.tagline, leftColWidth);
+    doc.text(splitTagline, margin, leftY);
+    leftY += splitTagline.length * 3.8;
   }
 
   const contactLine1 = [
@@ -71,50 +107,37 @@ export const generateJobCardPdf = (
     .filter(Boolean)
     .join(', ');
   if (contactLine1) {
-    doc.text(contactLine1, margin, currentY);
-    currentY += 3.8;
+    const splitAddress = doc.splitTextToSize(contactLine1, leftColWidth);
+    doc.text(splitAddress, margin, leftY);
+    leftY += splitAddress.length * 3.6;
   }
 
-  const contactLine2 = [
+  const phones = [
     settings.phone ? `Tel: ${settings.phone}` : '',
     settings.whatsApp ? `WA: ${settings.whatsApp}` : '',
+  ]
+    .filter(Boolean)
+    .join('   |   ');
+  if (phones) {
+    const splitPhones = doc.splitTextToSize(phones, leftColWidth);
+    doc.text(splitPhones, margin, leftY);
+    leftY += splitPhones.length * 3.6;
+  }
+
+  const emailGstin = [
     settings.email ? `Email: ${settings.email}` : '',
     settings.gstin ? `GSTIN: ${settings.gstin}` : '',
   ]
     .filter(Boolean)
-    .join('  |  ');
-  if (contactLine2) {
-    doc.text(contactLine2, margin, currentY);
-    currentY += 4;
+    .join('   |   ');
+  if (emailGstin) {
+    const splitEmail = doc.splitTextToSize(emailGstin, leftColWidth);
+    doc.text(splitEmail, margin, leftY);
+    leftY += splitEmail.length * 3.6;
   }
 
-  // Right Header: Job Card Box
-  const badgeWidth = 62;
-  const badgeHeight = 24;
-  const badgeX = pageWidth - margin - badgeWidth;
-  const badgeY = margin + 5;
-
-  doc.setFillColor(248, 250, 252);
-  doc.setDrawColor(...borderColor);
-  doc.roundedRect(badgeX, badgeY, badgeWidth, badgeHeight, 2, 2, 'FD');
-
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(7.5);
-  doc.setTextColor(...mutedGray);
-  doc.text('JOB CARD / WORK ORDER', badgeX + 4, badgeY + 5.5);
-
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(13);
-  doc.setTextColor(...primaryNavy);
-  doc.text(job.id, badgeX + 4, badgeY + 12);
-
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(7.5);
-  doc.setTextColor(...darkGray);
-  doc.text(`Date: ${formatDate(job.date)}`, badgeX + 4, badgeY + 17);
-  doc.text(`Status: ${job.status.toUpperCase()}`, badgeX + 4, badgeY + 21);
-
-  currentY = Math.max(currentY + 3, badgeY + badgeHeight + 4);
+  // Position currentY safely past both the left info and right badge
+  currentY = Math.max(leftY + 1.5, badgeY + badgeHeight + 3.5);
 
   // Horizontal divider
   doc.setDrawColor(...borderColor);
