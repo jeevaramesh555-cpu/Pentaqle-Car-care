@@ -139,15 +139,12 @@ export const TopHeader: React.FC<TopHeaderProps> = ({ onOpenMobileMenu, onOpenNe
         <div className="block md:hidden px-4 pb-2.5 pt-0.5">
           <button
             onClick={() => setIsSearchOpen(true)}
-            className="w-full flex items-center justify-between px-3 py-2 text-xs bg-neutral-100 hover:bg-neutral-200/70 border border-neutral-200/90 rounded-lg text-neutral-500 transition-all text-left shadow-2xs group"
+            className="w-full flex items-center px-3 py-2 text-xs bg-neutral-100 hover:bg-neutral-200/70 border border-neutral-200/90 rounded-lg text-neutral-500 transition-all text-left shadow-2xs group"
           >
             <div className="flex items-center gap-2 truncate">
               <Search className="w-3.5 h-3.5 text-neutral-400 group-hover:text-neutral-700 transition-colors shrink-0" />
               <span className="truncate">Search reg no. (KA-01...), customer, job...</span>
             </div>
-            <span className="text-[10px] text-neutral-400 font-medium shrink-0 ml-1.5 bg-white px-1.5 py-0.5 rounded border border-neutral-200">
-              ⌘K
-            </span>
           </button>
         </div>
       </header>
